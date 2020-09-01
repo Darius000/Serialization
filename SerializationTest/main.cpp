@@ -4,24 +4,9 @@
 #include <Serialize.h>
 #include <Archive.h>
 
-class Test //: public Serialization::ISerializable
+class Test
 {
 public:
-
-	/*void Serialize(Serialization::Archive& ar, unsigned int version) const override
-	{	
-		ar & m_var1;
-		ar & m_var2;
-		ar& sentence;
-	}
-
-	void DeSerialize(Serialization::Archive& ar, unsigned int version) override
-	{	
-		ar & m_var1;
-		ar & m_var2;
-		ar& sentence;
-	}*/
-
 	friend void Serialize(Serialization::Archive& ar, const Test& obj, unsigned int version);
 
 	friend void DeSerialize(Serialization::Archive& ar, Test& obj, unsigned int version);
@@ -49,18 +34,6 @@ void DeSerialize(Serialization::Archive& ar, Test& obj, unsigned int version)
 class Test2 : public Test 
 {
 public:
-
-	/*void Serialize(Serialization::Archive& ar, unsigned int version) const override
-	{
-		SERIALIZEBASECLASS(Test, ar, version);
-		SERIALIZEMEMEBER(ar, m_var3);
-	}
-
-	void DeSerialize(Serialization::Archive& ar, unsigned int version) override
-	{
-		DESERIALIZEBASECLASS(Test, ar, version);
-		SERIALIZEMEMEBER(ar, m_var3);
-	}*/
 
 	friend void Serialize(Serialization::Archive& ar, const Test2& obj, unsigned int version);
 
@@ -161,6 +134,42 @@ public:
 	Test2* test = nullptr;
 };
 
+struct Data
+{
+	std::string name = "Sarah";
+	int age = 32;
+	float height = 50.0f;
+};
+
+class DataHolder : public Serialization::ISerializable
+{
+public:
+	DataHolder() = default;
+
+	Data m_Data;
+
+	void Serialize(Serialization::Archive& ar, unsigned int version) const override
+	{
+		ar & m_Data.name;
+		ar & m_Data.age;
+		ar & m_Data.height;
+	}
+
+
+	void DeSerialize(Serialization::Archive& ar, unsigned int version) override
+	{
+		ar& m_Data.name;
+		ar& m_Data.age;
+		ar& m_Data.height;
+	}
+
+	std::string& GetName() override
+	{
+		return m_Data.name;
+	}
+
+};
+
 int main()
 {
 	Test test;
@@ -169,11 +178,16 @@ int main()
 	MTest* mtest = new MTest();
 	mtest->test = new Test2();
 
+	DataHolder dh;
+
 	Serialization::Archive archive("Test3");
 	archive.DeSerialize(test3);
 
 	Serialization::Archive archive4("mTest");
 	archive4.DeSerialize(*mtest);
+
+	Serialization::Archive DataArchive("DataHolder");
+	DataArchive.DeSerialize(dh);
 
 	std::cout << test3.sentence << "\n";
 	std::cout << test2.m_var3 << "\n";
@@ -191,9 +205,13 @@ int main()
 	mtest->test->m_var2 = true;
 	mtest->test->m_var3 = 4.54333f;
 
+	std::cout << dh.m_Data.name << "\n";
+
+	dh.m_Data.name = "Foe";
 
 	archive4.Serialize(*mtest);
 	archive.Serialize(test3);
+	DataArchive.Serialize(dh);
 
 	//Serialization::Serilializer::Save();
 
