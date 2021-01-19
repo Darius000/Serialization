@@ -1,0 +1,2 @@
+D:\Dev\Tuts\Tutorials\Serialization\lib\Serialization\Serialization.pdb
+D:\Dev\Tuts\Tutorials\Serialization\bin-int\Debug-windows-x86_64\Serialization\Serialization.pdb

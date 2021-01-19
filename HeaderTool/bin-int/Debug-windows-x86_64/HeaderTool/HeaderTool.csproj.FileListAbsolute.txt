@@ -1,0 +1,6 @@
+D:\Dev\Tuts\Tutorials\HeaderTool\bin\Debug-windows-x86_64\HeaderTool\HeaderTool.exe
+D:\Dev\Tuts\Tutorials\HeaderTool\bin\Debug-windows-x86_64\HeaderTool\HeaderTool.pdb
+D:\Dev\Tuts\Tutorials\HeaderTool\bin-int\Debug-windows-x86_64\HeaderTool\HeaderTool.csproj.CoreCompileInputs.cache
+D:\Dev\Tuts\Tutorials\HeaderTool\bin-int\Debug-windows-x86_64\HeaderTool\HeaderTool.exe
+D:\Dev\Tuts\Tutorials\HeaderTool\bin-int\Debug-windows-x86_64\HeaderTool\HeaderTool.pdb
+D:\Dev\Tuts\Tutorials\HeaderTool\bin-int\Debug-windows-x86_64\HeaderTool\HeaderTool.csprojAssemblyReference.cache

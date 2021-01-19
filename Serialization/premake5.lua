@@ -2,19 +2,22 @@ project "Serialization"
     kind "StaticLib"
     language "C++"
     
-    targetdir("bin/" .. outputdir .. "/%{prj.name}")
-    objectdir("bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("lib/%{prj.name}")
+    objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
     
     files
     {
-        "{prj.name}/src/.**h",
-        "{prj.name}/src/**cpp"
+        "**.h",
+        "**.cpp"
     }
     
-    filter "system:windows"
-        systemversion "latest"
-        cppdialect "C++17"
-        staticruntime "On"
-        
-    filter { "system:windows", "configurations:Release" }
+    includedirs
+    {
+        "%{prj.name}/src"
+    }
+    
+    --configuration "windows"
+   -- postbuildcommands{"{COPY} $(TargetPath) $(SolutionDir)\\scripts"}
+    
+   filter { "system:windows", "configurations:Release" }
         buildoptions "/MT"

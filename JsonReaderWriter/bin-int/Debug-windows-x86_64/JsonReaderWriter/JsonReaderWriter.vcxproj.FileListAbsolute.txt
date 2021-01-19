@@ -1,0 +1,2 @@
+D:\Dev\Tuts\Tutorials\JsonReaderWriter\lib\JsonReaderWriter\JsonReaderWriter.pdb
+D:\Dev\Tuts\Tutorials\JsonReaderWriter\bin-int\Debug-windows-x86_64\JsonReaderWriter\JsonReaderWriter.pdb

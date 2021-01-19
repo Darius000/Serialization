@@ -1,0 +1,2 @@
+D:\Dev\Tuts\Tutorials\WaveParser\lib\WaveParser\WaveParser.pdb
+D:\Dev\Tuts\Tutorials\WaveParser\bin-int\Debug-windows-x86_64\WaveParser\WaveParser.pdb

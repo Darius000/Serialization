@@ -1,0 +1,2 @@
+D:\Dev\Tuts\Tutorials\CreateWindow\lib\CreateWindow\CreateWindow.pdb
+D:\Dev\Tuts\Tutorials\CreateWindow\bin-int\Debug-windows-x86_64\CreateWindow\CreateWindow.pdb
