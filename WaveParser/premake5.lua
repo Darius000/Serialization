@@ -13,7 +13,7 @@ project "WaveParser"
     
     includedirs
     {
-        "%{prj.name}/include"
+        "%{prj.name}/include",
     }
     
      filter { "system:windows", "configurations:Debug" }

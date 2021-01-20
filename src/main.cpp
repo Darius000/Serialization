@@ -4,8 +4,9 @@
 //#include <Serialization/Serilializer.h>
 //#include <Window/BaseWindow.h>
 //#include <Reflection/Text.h>
-#include <WaveParser/WaveParser.h>
-
+#include <Importer/Importer.h>
+#include <Sound/SoundWave.h>
+#include <FileReadWriter/Reader/FileReader.h>
 //#ifndef UNICODE
 //#define UNICODE
 //#endif
@@ -62,17 +63,17 @@ int main()
 		prop.second->PrintValue();
 	}*/
 
-	WaveFile test1("C:\\Users\\Darius Bigbee\\Desktop\\test1.wav");
-	WaveFile DoorOpenWave("C:\\Users\\Darius Bigbee\\Desktop\\SW_Door_Open.wav");
+	SoundWave* test1 = Importer::Import<SoundWave>(L"C:\\Users\\Darius Bigbee\\Desktop\\DBSBLyrics.wav");
+	test1->bLoop = true;
+	test1->PrintInfo();
+	test1->Play();
 
-	//WaveFile* waveptr = new WaveFile("C:\\Users\\Darius Bigbee\\Desktop\\554406__kongehund__metal-bucket-water.wav");
+	/*SoundWave* DoorWave = Importer::Import<SoundWave>(L"C:\\Users\\Darius Bigbee\\Desktop\\SW_Door_Open.wav");
+	DoorWave->PrintInfo();
+	DoorWave->Play();*/
 
-	test1.PrintInfo();
-	DoorOpenWave.PrintInfo();
-	//waveptr->PrintInfo();
-	DoorOpenWave.Play();
-	test1.Play();
-
+	//test1->Stop();
+	
 
 	//delete waveptr;
 

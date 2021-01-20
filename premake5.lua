@@ -17,7 +17,7 @@ IncludeDir["Serialization"] = "Serialization/include"
 IncludeDir["HeaderTool"] = "HeaderTool/include"
 IncludeDir["CreateWindow"] = "CreateWindow/include"
 IncludeDir["JSON"] = "JsonReaderWriter/include"
-IncludeDir["WaveParser"] = "WaveParser/include"
+IncludeDir["WaveParser"] = "WaveParser/include/WaveParser"
 
 group "Dependencies"
     include "Arrays"
@@ -64,6 +64,7 @@ project "Tutorials"
         "JsonReaderWriter",
         "WaveParser",
         "winmm"
+        
     }
     
     filter"system:windows"

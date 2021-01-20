@@ -15,10 +15,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C58F36BF-B147-780C-1A4F-5168062613FD}</ProjectGuid>
+    <ProjectGuid>{BE4697BC-AA14-8BC2-93A8-FBE87F156727}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>WaveParser</RootNamespace>
+    <RootNamespace>FileReadWriter</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -53,28 +53,28 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>lib\WaveParser\</OutDir>
-    <IntDir>bin-int\Debug-windows-x86_64\WaveParser\</IntDir>
-    <TargetName>WaveParser</TargetName>
+    <OutDir>lib\FileReadWriter\</OutDir>
+    <IntDir>bin-int\Debug-windows-x86_64\FileReadWriter\</IntDir>
+    <TargetName>FileReadWriter</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>lib\WaveParser\</OutDir>
-    <IntDir>bin-int\Release-windows-x86_64\WaveParser\</IntDir>
-    <TargetName>WaveParser</TargetName>
+    <OutDir>lib\FileReadWriter\</OutDir>
+    <IntDir>bin-int\Release-windows-x86_64\FileReadWriter\</IntDir>
+    <TargetName>FileReadWriter</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <OutDir>lib\WaveParser\</OutDir>
-    <IntDir>bin-int\Dist-windows-x86_64\WaveParser\</IntDir>
-    <TargetName>WaveParser</TargetName>
+    <OutDir>lib\FileReadWriter\</OutDir>
+    <IntDir>bin-int\Dist-windows-x86_64\FileReadWriter\</IntDir>
+    <TargetName>FileReadWriter</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>WaveParser\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>FileReadWriter\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/MTd %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -86,7 +86,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>WaveParser\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>FileReadWriter\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/MT %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -98,24 +98,13 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>WaveParser\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>FileReadWriter\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="include\WaveParser\FileReadWriter\Reader\FileReader.h" />
-    <ClInclude Include="include\WaveParser\FileReadWriter\Reader\ReadMode.h" />
-    <ClInclude Include="include\WaveParser\Importer\Importer.h" />
-    <ClInclude Include="include\WaveParser\Sound\SoundWave.h" />
-    <ClInclude Include="include\WaveParser\Sound\SoundWaveProperties.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="include\WaveParser\FileReadWriter\Reader\FileReader.cpp" />
-    <ClCompile Include="include\WaveParser\Sound\SoundWave.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

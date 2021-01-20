@@ -58,16 +58,16 @@ inline std::ostream& operator<<(std::ostream& os, const WaveDataChunk& Data)
 	return os << "[ Data : ID = " << Data.subChunk2ID << ", S = " << Data.subChunk2Size << "]";
 }
 
-struct WaveInfo
+struct SoundWaveProperties
 {
 	WaveHeader Header;
 	WaveFormat Format;
 	WaveDataChunk DataChunk;
 
-	friend std::ostream& operator<<(std::ostream& os, const WaveInfo& Info);
+	friend std::ostream& operator<<(std::ostream& os, const SoundWaveProperties& Info);
 };
 
-inline std::ostream& operator<<(std::ostream& os, const WaveInfo& Info)
+inline std::ostream& operator<<(std::ostream& os, const SoundWaveProperties& Info)
 {
 	return os << Info.Header << "\n" << Info.Format << "\n" << Info.DataChunk << "\n";
 }
