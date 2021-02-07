@@ -1,13 +1,7 @@
 #pragma once
 
-#include <iostream>
-#include <ostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <vector>
+#include "Core.h"
 #include "Library.h"
-#include "ArchiveModes.h"
 
 namespace Serialization
 {
@@ -16,13 +10,14 @@ namespace Serialization
 	class Archive
 	{
 	public:
-		Archive(const std::string& filename, EArchiveModes modes = EArchiveModes::Binary)
-			:m_FileName(filename), m_Modes(modes)
+		Archive(const std::string& filename, bool binary = true)
+			:m_FileName(filename), m_Binary(binary)
 		{
 			m_FileName.append(s_Extension);
 
 			fs = new std::fstream();
 		}
+
 		~Archive()
 		{
 			delete fs;
@@ -31,9 +26,9 @@ namespace Serialization
 		template<class Object>
 		void Serialize(const Object& o)
 		{
-			fs->open(m_FileName, static_cast<int>((EArchiveModes::Out | EArchiveModes::Trunc | m_Modes)));
+			fs->open(m_FileName, std::ios::out | std::ios::trunc);
 
-			if(IsBinaryModeActive())  WriteBinary(*fs, s_FileVersion); else *fs << s_FileVersion << "\n";
+			m_Binary ? WriteBinary(*fs, s_FileVersion) : *fs << s_FileVersion << "\n";
 
 			OnSerialize(*this, o, s_FileVersion);
 
@@ -43,30 +38,19 @@ namespace Serialization
 		template<class Object>
 		void DeSerialize(Object& o)
 		{
-			fs->open(m_FileName, static_cast<int>((EArchiveModes::In | m_Modes)));
+			fs->open(m_FileName, std::ios::in);
 
 			if (fs->good() == false) return;
 
 			unsigned int fileversion = -1;
 
-			if(IsBinaryModeActive()) ReadBinary(*fs, fileversion); else *fs >> fileversion;
+			m_Binary ? ReadBinary(*fs, fileversion) : *fs >> fileversion;
 
 			OnDeSerialize(*this, o, fileversion);
 
 			fs->close();
 
 		}
-
-		const bool IsBinaryModeActive() const 
-		{
-			return (m_Modes & EArchiveModes::Binary) == EArchiveModes::Binary;
-		}
-
-		template<class T>
-		void operator<<(const T* o);
-
-		template<class T>
-		void operator>>(T* o);
 
 		template<class T>
 		Archive& operator&(const T& var);
@@ -91,30 +75,17 @@ namespace Serialization
 		
 		std::string m_FileName;
 
-		EArchiveModes m_Modes;
+		bool m_Binary;
 
 		static unsigned int s_FileVersion;
 
 		static const char* s_Extension;
 	};
 
-
-	template<class T>
-	void Archive::operator<<(const T* o)
-	{
-		Serialize(*o);
-	}
-
-	template<class T>
-	void Archive::operator>>(T* o)
-	{
-		DeSerialize(*o);
-	}
-
 	template<class T>
 	Archive& Archive::operator&(const T& var)
 	{
-		IsBinaryModeActive() ? WriteBinary(*fs, var) : Write(*fs, var);
+		m_Binary ? WriteBinary(*fs, var) : Write(*fs, var);
 
 		return *this;
 	}
@@ -122,7 +93,7 @@ namespace Serialization
 	template<class T>
 	Archive& Archive::operator&(T& var)
 	{	
-		IsBinaryModeActive() ? ReadBinary(*fs, var) : Read(*fs, var);
+		m_Binary ? ReadBinary(*fs, var) : Read(*fs, var);
 
 		return *this;
 	}
@@ -130,7 +101,7 @@ namespace Serialization
 	template<>
 	Archive& Archive::operator&(std::string& var)
 	{
-		IsBinaryModeActive() ? ReadBinary(*fs, var) : Read(*fs, var);
+		m_Binary ? ReadBinary(*fs, var) : Read(*fs, var);
 
 		return *this;
 	}
@@ -138,7 +109,7 @@ namespace Serialization
 	template<>
 	Archive& Archive::operator&(const std::string& var)
 	{
-		IsBinaryModeActive()? WriteBinary(*fs, var) : Write(*fs, var);
+		m_Binary ? WriteBinary(*fs, var) : Write(*fs, var);
 		
 		return *this;
 	}
@@ -146,7 +117,7 @@ namespace Serialization
 	template<class T>
 	Archive& Archive::operator&(const std::vector<T>& v)
 	{
-		IsBinaryModeActive() ? WriteBinaryVector<T>(*fs, v) : WriteVector<T>(*fs, v);
+		m_Binary ? WriteBinaryVector<T>(*fs, v) : WriteVector<T>(*fs, v);
 		
 		return *this;
 	}
@@ -154,7 +125,7 @@ namespace Serialization
 	template<class T>
 	Archive& Archive::operator&(std::vector<T>& v)
 	{	
-		IsBinaryModeActive() ?  ReadBinaryVector<T>(*fs, v) : ReadVector<T>(*fs, v);
+		m_Binary ?  ReadBinaryVector<T>(*fs, v) : ReadVector<T>(*fs, v);
 
 		return *this;
 	}
@@ -199,36 +170,7 @@ namespace Serialization
 		OnDeSerialize(ar, (BaseClass&)obj, version);
 	};
 
-	template<class T>
-	inline void SerializeObject(Archive& ar, const T* obj, unsigned int version)
-	{
-		const bool isnotnull = (obj == nullptr) ? false : true;
-
-		ar& isnotnull;
-
-		if (isnotnull)
-			OnSerialize(ar, *obj, version);
-	};
-
-	template<class T>
-	inline void DeSerializeObject(Archive& ar, T* obj, unsigned int version)
-	{
-		bool isnotnull = false;
-
-		ar& isnotnull;
-
-		if (isnotnull)
-		{
-			if(obj == nullptr)
-				obj = new T();
-
-			OnDeSerialize(ar, *obj, version);
-		}
-	};
-
 #define SERIALIZEMEMEBER(archive, member) archive & member;
 #define SERIALIZEBASECLASS(BaseClass, archive, obj, version) Serialization::BaseObjectSerialize<BaseClass>(archive, obj, version);
 #define DESERIALIZEBASECLASS(BaseClass, archive, obj, version) Serialization::BaseObjectDeSerialize<BaseClass>(archive, obj, version);
-#define SERIALIZEOBJECT(archive, obj, version) SerializeObject(archive, obj, version);
-#define DESERIALIZEOBJECT(archive, obj, version) DeSerializeObject(archive, obj, version);
 }

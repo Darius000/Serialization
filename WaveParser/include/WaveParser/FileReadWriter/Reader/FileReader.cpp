@@ -20,7 +20,10 @@ bool FileReader::Open(const wchar_t* file, ReadMode mode)
 
 	CalculateFileSize();
 
+	//no point in reading if file size is 0 bytes
 	if(!fileSize) return false;
+
+	path = file;
 
 	return true;
 }

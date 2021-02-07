@@ -22,6 +22,8 @@ public:
 	//return to beginning of file stream
 	void Begin();
 
+	const wchar_t* GetFilePath() { return path; }
+
 public:
 	long GetFileSize() const { return fileSize; }
 
@@ -31,6 +33,7 @@ private:
 private:
 	std::fstream stream;
 	long fileSize;
+	const wchar_t* path;
 };
 
 template<typename Type>

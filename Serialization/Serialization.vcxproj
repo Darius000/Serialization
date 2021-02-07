@@ -74,8 +74,9 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>Serialization\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Serialization\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
+      <AdditionalOptions>/MTd %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -85,7 +86,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>Serialization\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Serialization\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/MT %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -97,7 +98,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>Serialization\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Serialization\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -106,8 +107,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Serialization\Archive.h" />
-    <ClInclude Include="include\Serialization\ArchiveModes.h" />
-    <ClInclude Include="include\Serialization\EnumOperators.h" />
+    <ClInclude Include="include\Serialization\Core.h" />
     <ClInclude Include="include\Serialization\Library.h" />
     <ClInclude Include="include\Serialization\Serialize.h" />
     <ClInclude Include="include\Serialization\Serilializer.h" />

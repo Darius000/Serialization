@@ -16,7 +16,7 @@ project "WaveParser"
         "%{prj.name}/include",
     }
     
-     filter { "system:windows", "configurations:Debug" }
+    filter { "system:windows", "configurations:Debug" }
         buildoptions "/MTd"
     
     filter { "system:windows", "configurations:Release" }

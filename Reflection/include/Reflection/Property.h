@@ -53,6 +53,7 @@ namespace Reflection
 		}
 
 		T& operator =(const T& v) {return *value = v;  }
+		T* operator =(T* v) { return value = v; }
 
 		virtual const T& operator()() const { return *value; }
 		virtual explicit operator const T& () const { return *value; }

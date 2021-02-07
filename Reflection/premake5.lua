@@ -13,6 +13,9 @@ project "Reflection"
     {
         "%{prj.name}/src"
     }
+
+    filter { "system:windows", "configurations:Debug" }
+        buildoptions "/MTd"
     
    filter { "system:windows", "configurations:Release" }
         buildoptions "/MT"

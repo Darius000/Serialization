@@ -1,11 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <string>
-#include <unordered_map>
-#include <map>
-#include <array>
-#include <type_traits>
+#include "Core.h"
 
 namespace Serialization
 {

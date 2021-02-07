@@ -2,6 +2,7 @@
 
 #include "../FileReadWriter/Reader/FileReader.h"
 #include "../Sound/SoundWave.h"
+#include "../Sound/SoundMpeg.h"
 
 class Importer
 {
@@ -164,6 +165,25 @@ SoundWave* Importer::OnImport(const wchar_t* path)
 	}
 
 	return wave;
+}
+
+template<>
+SoundMpeg* Importer::OnImport(const wchar_t* path)
+{
+	SoundMpeg* mpeg = nullptr;
+
+	if (fileReader.Open(path, ReadMode::Binary))
+	{
+		mpeg = new SoundMpeg();
+		mpeg->Buffer = new char[fileReader.GetFileSize()];
+		mpeg->FilePath = fileReader.GetFilePath();
+
+		fileReader.Read(mpeg->Buffer, fileReader.GetFileSize());
+		fileReader.Read(mpeg->Properties.SyncWord, 11);
+		
+	}
+
+	return mpeg;
 }
 
 __declspec(selectany) FileReader Importer::fileReader;

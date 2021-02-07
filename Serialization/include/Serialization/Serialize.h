@@ -1,12 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <ostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include "Archive.h"
+#include "Core.h"
 
 namespace Serialization
 { 
@@ -16,8 +10,8 @@ namespace Serialization
 	public:
 		ISerializable();
 
-		virtual std::string& GetName() = 0;
-		virtual void Serialize(Archive& ar, unsigned int version) const = 0;
-		virtual void DeSerialize(Archive& ar, unsigned int version) = 0;
+		virtual std::string GetName() = 0;
+		virtual void Serialize(class Archive& ar, unsigned int version) const = 0;
+		virtual void DeSerialize(class Archive& ar, unsigned int version) = 0;
 	};
 }

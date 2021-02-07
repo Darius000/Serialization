@@ -13,11 +13,14 @@ project "Serialization"
     
     includedirs
     {
-        "%{prj.name}/src"
+        "%{prj.name}/include",
     }
     
     --configuration "windows"
    -- postbuildcommands{"{COPY} $(TargetPath) $(SolutionDir)\\scripts"}
+
+   filter { "system:windows", "configurations:Debug" }
+        buildoptions "/MTd"
     
    filter { "system:windows", "configurations:Release" }
         buildoptions "/MT"

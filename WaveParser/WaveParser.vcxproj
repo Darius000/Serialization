@@ -109,11 +109,13 @@
     <ClInclude Include="include\WaveParser\FileReadWriter\Reader\FileReader.h" />
     <ClInclude Include="include\WaveParser\FileReadWriter\Reader\ReadMode.h" />
     <ClInclude Include="include\WaveParser\Importer\Importer.h" />
+    <ClInclude Include="include\WaveParser\Sound\SoundMpeg.h" />
     <ClInclude Include="include\WaveParser\Sound\SoundWave.h" />
     <ClInclude Include="include\WaveParser\Sound\SoundWaveProperties.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\WaveParser\FileReadWriter\Reader\FileReader.cpp" />
+    <ClCompile Include="include\WaveParser\Sound\SoundMpeg.cpp" />
     <ClCompile Include="include\WaveParser\Sound\SoundWave.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

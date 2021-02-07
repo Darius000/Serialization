@@ -7,6 +7,9 @@
     <Filter Include="FileReadWriter\Reader">
       <UniqueIdentifier>{80425B0E-ECAE-1609-B5A2-AE6621CE3871}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Importer">
+      <UniqueIdentifier>{D7C05FAE-C38D-BAB9-ECA6-A861D8D2EF47}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Sound">
       <UniqueIdentifier>{4ED01B0E-BAE4-43BF-8366-E71EEF3940F0}</UniqueIdentifier>
     </Filter>
@@ -18,17 +21,25 @@
     <ClInclude Include="include\WaveParser\FileReadWriter\Reader\ReadMode.h">
       <Filter>FileReadWriter\Reader</Filter>
     </ClInclude>
+    <ClInclude Include="include\WaveParser\Importer\Importer.h">
+      <Filter>Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WaveParser\Sound\SoundMpeg.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
     <ClInclude Include="include\WaveParser\Sound\SoundWave.h">
       <Filter>Sound</Filter>
     </ClInclude>
     <ClInclude Include="include\WaveParser\Sound\SoundWaveProperties.h">
       <Filter>Sound</Filter>
     </ClInclude>
-    <ClInclude Include="include\WaveParser\Importer\Importer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\WaveParser\FileReadWriter\Reader\FileReader.cpp">
       <Filter>FileReadWriter\Reader</Filter>
+    </ClCompile>
+    <ClCompile Include="include\WaveParser\Sound\SoundMpeg.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="include\WaveParser\Sound\SoundWave.cpp">
       <Filter>Sound</Filter>

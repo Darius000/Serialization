@@ -9,7 +9,7 @@ namespace Serialization
 		for (auto s : m_Serializables)
 		{
 			Archive FArchive(s->GetName());
-			FArchive >> s;
+			FArchive.DeSerialize(*s);
 		}
 	}
 
@@ -18,7 +18,7 @@ namespace Serialization
 		for (auto s : m_Serializables)
 		{
 			Archive FArchive(s->GetName());
-			FArchive << s;
+			FArchive.Serialize(*s);
 		}
 	}
 

@@ -1,8 +1,6 @@
 #pragma once
 
-#include <fstream>
-#include <string>
-#include <vector>
+
 #include "TypeTraits.h"
 
 namespace Serialization
@@ -103,6 +101,7 @@ namespace Serialization
 	template<typename U>
 	inline void ReadVector(std::fstream& fs, std::vector<U>& o)
 	{
+		//class type to get commas and new line as delimiters for array in ascii format
 		class my_c_type : public std::ctype<char>
 		{
 			mask my_table[table_size];
@@ -122,12 +121,14 @@ namespace Serialization
 		U value;
 		size_t size = 0;
 
+		//Get the size of the array located at 1st character on line
 		fs >> size;
 		o.resize(size);
 
 		std::locale x(std::locale::classic(), new my_c_type);
 		fs.imbue(x);
 
+		//read in values into array
 		size_t i = 0;
 		while (fs >> value)
 		{

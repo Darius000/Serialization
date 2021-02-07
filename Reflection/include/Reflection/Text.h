@@ -43,8 +43,8 @@ public:
 	Reflection::TextClass Class = {"TEXT", this,{
 	new Reflection::Property<std::string>{"line", &(Text::line)},
 	new Reflection::Property<int>{"age", &(Text::age)},
-	new Reflection::Property<float>{"height", &(Text::height)},
-	/*new Reflection::ClassProperty<Text>{"Text", text, {}}*/}};
+	new Reflection::Property<float>{"height", &(Text::height)}
+	}};
 
 	Reflection::TextClass& GetClass() { return Class; }
 };
